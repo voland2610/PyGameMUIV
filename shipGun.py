@@ -10,8 +10,15 @@ class ShipGun:
         self.display_rectangel = display.get_rect()
         self.rectangel.centerx = self.display_rectangel.centerx
         self.rectangel.bottom = self.display_rectangel.bottom
+        self.moveR = False
+        self.moveL = False
 
     def product(self):
         """прорисовка нашего корабля"""
         self.display.blit(self.img, self.rectangel)
 
+    def pos_update(self):
+        if self.moveR == True:
+            self.rectangel.centerx += 10
+        if self.moveL == True:
+            self.rectangel.centerx -= 10

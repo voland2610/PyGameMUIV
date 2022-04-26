@@ -1,6 +1,7 @@
 import pygame
 import sys
 from shipGun import ShipGun
+import events_control
 
 
 def start():
@@ -13,9 +14,8 @@ def start():
 
     # Основной цикл игры
     while True:
-        for events in pygame.event.get():
-            if events.type == pygame.QUIT:
-                sys.exit()
+        events_control.events(shipGun)
+        shipGun.pos_update()
         display.blit(backgroundImg, (0, 0))
         display.blit(backgroundImg, (1020, 0))
         shipGun.product()
