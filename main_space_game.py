@@ -16,10 +16,7 @@ def start():
     while True:
         events_control.events(shipGun)
         shipGun.pos_update()
-        display.blit(backgroundImg, (0, 0))
-        display.blit(backgroundImg, (1020, 0))
-        shipGun.product()
-        pygame.display.flip()
+        events_control.display_update(backgroundImg, display, shipGun)
 
 
 start()

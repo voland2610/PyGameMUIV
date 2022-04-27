@@ -19,3 +19,11 @@ def events(shipGun):
         if events.type == pygame.KEYUP:
             if events.key == pygame.K_LEFT or events.key == pygame.K_a:
                 shipGun.moveL = False
+
+
+def display_update(backgroundImg, display, shipGun):
+    """обнавление нашего экрана"""
+    display.blit(backgroundImg, (0, 0))
+    display.blit(backgroundImg, (1020, 0))
+    shipGun.product()
+    pygame.display.flip()
