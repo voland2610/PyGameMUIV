@@ -11,6 +11,7 @@ class ShipGun:
         self.rectangel = self.img.get_rect()
         self.display_rectangel = display.get_rect()
         self.rectangel.centerx = self.display_rectangel.centerx
+        self.number_center = float(self.rectangel.centerx)
         self.rectangel.bottom = self.display_rectangel.bottom
         self.moveR = False
         self.moveL = False
@@ -22,7 +23,9 @@ class ShipGun:
     def pos_update(self):
         # проверка на нажатие клавиши и выхода за правый край
         if self.moveR == True and self.rectangel.centerx < self.right_side:
-            self.rectangel.centerx += 10
+            self.number_center += 10.5
         # проверка на нажатие клавиши и выхода за левый край
         if self.moveL == True and self.rectangel.centerx > self.left_side:
-            self.rectangel.centerx -= 10
+            self.number_center -= 10.5
+
+        self.rectangel.centerx = self.number_center

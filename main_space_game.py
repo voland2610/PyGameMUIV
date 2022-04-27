@@ -1,5 +1,4 @@
 import pygame
-import sys
 from shipGun import ShipGun
 import events_control
 
@@ -11,12 +10,17 @@ def start():
     backgroundImg = pygame.image.load("img/bg/Purple Nebula 8 - 1024x1024.png")
     display = pygame.display.set_mode((1920, 1000))
     shipGun = ShipGun(display)
+    container_bullet = pygame.sprite.Group()
 
     # Основной цикл игры
     while True:
-        events_control.events(shipGun)
+        events_control.events(display, shipGun, container_bullet)
         shipGun.pos_update()
-        events_control.display_update(backgroundImg, display, shipGun)
+        container_bullet.update()
+        events_control.display_update(backgroundImg, display, shipGun, container_bullet)
+
+
+
 
 
 start()
