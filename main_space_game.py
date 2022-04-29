@@ -3,13 +3,10 @@ import events_control
 import pygame
 import pygame_menu
 from pygame_menu.examples import create_example_window
-from typing import Tuple, Any
-
-surface = create_example_window('Example - Simple', (600, 400))
+from alien import Alian
 
 
-def set_difficulty(selected: Tuple, value: Any):
-    pass
+surface = create_example_window('Space war', (600, 400))
 
 
 def start_the_game():
@@ -19,23 +16,23 @@ def start_the_game():
     display = pygame.display.set_mode((1920, 1000), pygame.RESIZABLE)
     shipGun = ShipGun(display)
     container_bullet = pygame.sprite.Group()
-
+    alien = Alian(display)
     # Основной цикл игры
     while True:
         events_control.events(display, shipGun, container_bullet)
         shipGun.pos_update()
-        container_bullet.update()
-        events_control.display_update(backgroundImg, display, shipGun, container_bullet)
+        events_control.display_update(backgroundImg, display, shipGun, alien, container_bullet)
+        events_control.remove_bullet(container_bullet)
 
 
+#параметры стартового меню
 menu_start_game = pygame_menu.Menu(
     height=300,
     theme=pygame_menu.themes.THEME_BLUE,
-    title='Welcome',
+    title='Space war',
     width=400
 )
 
-#menu.add.selector('Difficulty: ', [('Hard', 1), ('Easy', 2)], onchange=set_difficulty)
 menu_start_game.add.button('Play', start_the_game)
 menu_start_game.add.button('Quit', pygame_menu.events.EXIT)
 

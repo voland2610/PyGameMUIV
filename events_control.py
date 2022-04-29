@@ -25,11 +25,20 @@ def events(display, shipGun, container_bullet):
                 shipGun.moveL = False
 
 
-def display_update(backgroundImg, display, shipGun, container_bullet):
+def display_update(backgroundImg, display, shipGun, alian, container_bullet):
     """обнавление нашего экрана"""
     display.blit(backgroundImg, (0, 0))
     display.blit(backgroundImg, (1020, 0))
     for bullets in container_bullet.sprites():
         bullets.sketch_bullet()
     shipGun.product()
+    alian.sketch_alian()
     pygame.display.flip()
+
+
+def remove_bullet(container_bullet):
+    """удаление пуль"""
+    container_bullet.update()
+    for bullets in container_bullet.copy():
+        if bullets.rectangel.bottom <= 0:
+            container_bullet.remove(bullets)
