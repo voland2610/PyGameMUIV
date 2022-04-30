@@ -1,6 +1,8 @@
+import random
 import pygame
 import sys
 import shooting_gun
+from alien import Alian
 
 
 def events(display, shipGun, container_bullet):
@@ -25,14 +27,14 @@ def events(display, shipGun, container_bullet):
                 shipGun.moveL = False
 
 
-def display_update(backgroundImg, display, shipGun, alian, container_bullet):
+def display_update(backgroundImg, display, shipGun, aliens, container_bullet):
     """обнавление нашего экрана"""
     display.blit(backgroundImg, (0, 0))
     display.blit(backgroundImg, (1020, 0))
     for bullets in container_bullet.sprites():
         bullets.sketch_bullet()
     shipGun.product()
-    alian.sketch_alian()
+    aliens.draw(display)
     pygame.display.flip()
 
 
@@ -42,3 +44,18 @@ def remove_bullet(container_bullet):
     for bullets in container_bullet.copy():
         if bullets.rectangel.bottom <= 0:
             container_bullet.remove(bullets)
+
+
+def update_pos_alian(aliens):
+    aliens.update()
+
+def create_alian(display, alians):
+    alien = Alian(display)
+    alien_width = alien.rect.width
+    number_alian_x = int((1920 - 2 * alien_width) / alien_width)
+    for alian_number in range(number_alian_x):
+        alian = Alian(display)
+        #alian.x = alien_width + alien_width * alian_number
+        #alian.rect.x = alian.x
+        alian.rect.x = random.randint(100, 1200)
+        alians.add(alian)

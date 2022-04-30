@@ -3,7 +3,6 @@ import events_control
 import pygame
 import pygame_menu
 from pygame_menu.examples import create_example_window
-from alien import Alian
 
 
 surface = create_example_window('Space war', (600, 400))
@@ -16,13 +15,15 @@ def start_the_game():
     display = pygame.display.set_mode((1920, 1000), pygame.RESIZABLE)
     shipGun = ShipGun(display)
     container_bullet = pygame.sprite.Group()
-    alien = Alian(display)
+    aliens = pygame.sprite.Group()
+    events_control.create_alian(display, aliens)
     # Основной цикл игры
     while True:
         events_control.events(display, shipGun, container_bullet)
         shipGun.pos_update()
-        events_control.display_update(backgroundImg, display, shipGun, alien, container_bullet)
+        events_control.display_update(backgroundImg, display, shipGun, aliens, container_bullet)
         events_control.remove_bullet(container_bullet)
+        events_control.update_pos_alian(aliens)
 
 
 #параметры стартового меню
