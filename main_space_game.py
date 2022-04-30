@@ -24,7 +24,7 @@ def start_the_game():
         events_control.events(display, shipGun, container_bullet)
         shipGun.pos_update()
         events_control.display_update(backgroundImg, display, shipGun, aliens, container_bullet)
-        events_control.remove_bullet(aliens, container_bullet)
+        events_control.remove_bullet(display, aliens, container_bullet)
         events_control.update_pos_alian(info, display, shipGun, aliens, container_bullet)
 
 
