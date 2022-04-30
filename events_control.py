@@ -38,16 +38,18 @@ def display_update(backgroundImg, display, shipGun, aliens, container_bullet):
     pygame.display.flip()
 
 
-def remove_bullet(container_bullet):
-    """удаление пуль"""
+def remove_bullet(aliens, container_bullet):
+    """удаление пуль + коллизия пули"""
     container_bullet.update()
     for bullets in container_bullet.copy():
-        if bullets.rectangel.bottom <= 0:
+        if bullets.rect.bottom <= 0:
             container_bullet.remove(bullets)
+    colis = pygame.sprite.groupcollide(container_bullet, aliens, True, True)
 
-
-def update_pos_alian(aliens):
+def update_pos_alian(shipGun, aliens):
     aliens.update()
+    if pygame.sprite.spritecollideany(shipGun, aliens):
+        print(123)
 
 def create_alian(display, alians):
     alien = Alian(display)
@@ -57,5 +59,5 @@ def create_alian(display, alians):
         alian = Alian(display)
         #alian.x = alien_width + alien_width * alian_number
         #alian.rect.x = alian.x
-        alian.rect.x = random.randint(100, 1200)
+        alian.rect.x = random.randint(100, 1000)
         alians.add(alian)
