@@ -10,8 +10,8 @@ class Shooting(pygame.sprite.Sprite):
         self.color_bullet = 255, 235,  59
         #скорость полета пули
         self.bullet_speed = 15.5
-        self.rect.centerx = shipGun.rectangel.centerx
-        self.rect.top = shipGun.rectangel.top
+        self.rect.centerx = shipGun.rect.centerx
+        self.rect.top = shipGun.rect.top
         self.y = float(self.rect.y)
 
     def update(self):

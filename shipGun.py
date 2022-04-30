@@ -29,3 +29,7 @@ class ShipGun:
             self.number_center -= 10.5
 
         self.rect.centerx = self.number_center
+
+    def ship_gun_create(self):
+        """появление пушки после смерти"""
+        self.number_center = self.display_rectangel.centerx

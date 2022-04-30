@@ -3,6 +3,7 @@ import pygame
 import sys
 import shooting_gun
 from alien import Alian
+import time
 
 
 def events(display, shipGun, container_bullet):
@@ -46,10 +47,21 @@ def remove_bullet(aliens, container_bullet):
             container_bullet.remove(bullets)
     colis = pygame.sprite.groupcollide(container_bullet, aliens, True, True)
 
-def update_pos_alian(shipGun, aliens):
+
+def ships_death(info, display, shipGun, aliens, container_bullet):
+    """логика столкновения корбля с пришельцами"""
+    info.ship_death -= 1
+    if info.ship_death == 0:
+        aliens.empty()
+        container_bullet.empty()
+        create_alian(display, aliens)
+        shipGun.ship_gun_create()
+
+
+def update_pos_alian(info, display, shipGun, aliens, container_bullet):
     aliens.update()
     if pygame.sprite.spritecollideany(shipGun, aliens):
-        print(123)
+        ships_death(info, display, shipGun, aliens, container_bullet)
 
 def create_alian(display, alians):
     alien = Alian(display)

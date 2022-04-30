@@ -17,5 +17,5 @@ class Alian(pygame.sprite.Sprite):
         self.display.blit(self.image, self.rect)
 
     def update(self):
-        self.y += 2
+        self.y += 3
         self.rect.y = self.y
