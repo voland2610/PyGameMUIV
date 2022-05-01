@@ -1,9 +1,10 @@
 import random
 import pygame
 import sys
+import sqlite3
 import shooting_gun
 from alien import Alian
-
+from save_stats import Stats
 
 
 def events(display, shipGun, container_bullet):
@@ -51,6 +52,7 @@ def remove_bullet(display, info, stats, aliens, container_bullet):
         for aliens in colis.values():
             info.score_now += 10 * len(aliens)
         stats.draw_stats()
+        score_hg_look(info, stats)
     if len(aliens) == 0:
         container_bullet.empty()
         create_alian(display, aliens)
@@ -84,9 +86,16 @@ def alians_inspect(info, display, shipGun, aliens, container_bullet):
             break
 
 
+def score_hg_look(info, stats):
+
+    if info.score_now > info.high_score:
+        info.high_score = info.score_now
+        with open('score.txt', 'w') as f:
+            f.write(str(info.high_score))
+        stats.draw_high_score()
+
+
 def create_alian(display, alians):
-    alien = Alian(display)
-    alien_width = alien.rect.width
     number_alian_x = (100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1600, 1700, 1900)
     for alian_number in range(15):
         alian = Alian(display)

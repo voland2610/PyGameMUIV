@@ -1,4 +1,4 @@
-import pygame
+import sqlite3
 
 
 class Info():
@@ -6,6 +6,8 @@ class Info():
     def __init__(self):
         self.remove_statistic()
         self.start_game = True
+        with open('score.txt', 'r') as f:
+            self.high_score = int(f.readline())
 
     def remove_statistic(self):
         self.ship_death = 2
