@@ -29,7 +29,7 @@ def start_the_game():
             shipGun.pos_update()
             events_control.display_update(backgroundImg, display, info, stats, shipGun, aliens, container_bullet)
             events_control.remove_bullet(display, info, stats, aliens, container_bullet)
-            events_control.update_pos_alian(info, display, shipGun, aliens, container_bullet)
+            events_control.update_pos_alian(info, display, stats, shipGun, aliens, container_bullet)
 
 
 #параметры стартового меню

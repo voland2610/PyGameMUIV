@@ -1,4 +1,5 @@
 import pygame.font
+from shipGun import ShipGun
 
 
 class Stats():
@@ -11,6 +12,7 @@ class Stats():
         self.font = pygame.font.Font('Retro.ttf', 60)
         self.draw_stats()
         self.draw_high_score()
+        self.img_ship()
 
     def draw_stats(self):
         """логика расположения счета"""
@@ -23,6 +25,16 @@ class Stats():
         """отрисовка счета"""
         self.display.blit(self.stat_image, self.stat_rect)
         self.display.blit(self.number_score_hg, self.score_hg_rect)
+        self.ship.draw(self.display)
+
+    def img_ship(self):
+        """отрисовка жизней слева в углу"""
+        self.ship = pygame.sprite.Group()
+        for ships in range(self.info.ship_death):
+            ship = ShipGun(self.display)
+            ship.rect.x = 15 + ships * ship.rect.width
+            ship.rect.y = 20
+            self.ship.add(ship)
 
     def draw_high_score(self):
         """Вводит по центру экрана рекорд"""
