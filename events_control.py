@@ -1,10 +1,9 @@
 import random
 import pygame
 import sys
-import sqlite3
 import shooting_gun
 from alien import Alian
-from save_stats import Stats
+
 
 
 def events(display, shipGun, container_bullet):

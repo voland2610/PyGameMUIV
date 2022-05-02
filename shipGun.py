@@ -24,10 +24,10 @@ class ShipGun(pygame.sprite.Sprite):
     def pos_update(self):
         # проверка на нажатие клавиши и выхода за правый край
         if self.moveR == True and self.rect.centerx < self.right_side:
-            self.number_center += 12.5
+            self.number_center += 20.5
         # проверка на нажатие клавиши и выхода за левый край
         if self.moveL == True and self.rect.centerx > self.left_side:
-            self.number_center -= 12.5
+            self.number_center -= 20.5
 
         self.rect.centerx = self.number_center
 

@@ -1,6 +1,3 @@
-import sqlite3
-
-
 class Info():
     """вся информация (килы, жизни и тд)"""
     def __init__(self):
